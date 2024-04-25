@@ -1,7 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:verifily/outils/width_height.dart';
-import 'package:verifily/presentation/const.dart';
+import 'package:verifily/const.dart';
 import 'package:verifily/presentation/screens/verification_front_id_card.dart';
 import 'package:verifily/presentation/screens/verification_passport.dart';
 

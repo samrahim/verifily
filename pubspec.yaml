@@ -40,6 +40,11 @@ dependencies:
   path_provider: ^2.1.3
   path: ^1.8.3
   flutter_camera_overlay: ^0.1.1
+  http: ^1.2.0
+  flutter_bloc: ^8.1.5
+  equatable: ^2.0.5
+  loading_animation_widget: ^1.2.1
+  flutter_launcher_icons: ^0.13.1
   
 
 
@@ -47,6 +52,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "images/88f44814-6194-4ddc-a1c6-a597ed472ca1.jpg"
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

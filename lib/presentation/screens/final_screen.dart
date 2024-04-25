@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:verifily/outils/width_height.dart';
-import 'package:verifily/presentation/const.dart';
+import 'package:verifily/const.dart';
+import 'package:verifily/presentation/screens/register_screen.dart';
 import 'package:verifily/presentation/widgets/inkwellveri.dart';
 
 class FinalScreen extends StatefulWidget {
@@ -45,39 +46,44 @@ class _FinalScreenState extends State<FinalScreen> {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(60)),
                     child: Image.asset(
-                      'images/download.jpg',
-                      height: MediaQuery.of(context).size.height / 7,
+                      'images/—Pngtree—green check mark in circle_9024765.png',
+                      height: MediaQuery.of(context).size.height / 5,
                     )),
                 const SizedBox(height: 10),
                 Text(
-                  "Exellent Job !",
+                  "Excellent Job",
                   style: titleTextStyle(
                       screenWidth(context: context) / 360, Colors.black),
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  "We are verifiyen",
+                  "We are verifying ",
                   style: titleTextStyle(
                       screenWidth(context: context) / 360, Colors.black),
                 ),
                 Text(
-                  "Your Information",
+                  "your information",
                   style: titleTextStyle(
                       screenWidth(context: context) / 360, Colors.black),
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  "It may take up to",
+                  "It may take up to ",
                   style: TextStyle(fontSize: 40, fontWeight: FontWeight.w500),
                 ),
                 const Text(
-                  "24 Hours ...",
+                  "24 hours...",
                   style: TextStyle(fontSize: 40, fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(height: 32),
                 InkVerification(
-                  function: () {},
-                  isContinue: false,
+                  function: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const RegisterScreen()));
+                  },
+                  isContinue: true,
                   title: "BACK TO HOME",
                   widht: screenWidth(context: context),
                 )

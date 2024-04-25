@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:verifily/outils/width_height.dart';
-import 'package:verifily/presentation/const.dart';
+import 'package:verifily/const.dart';
 import 'package:verifily/presentation/screens/passeport_img.dart';
 import 'package:verifily/presentation/widgets/inkwellveri.dart';
 

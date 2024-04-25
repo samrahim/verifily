@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:verifily/blocs/imagespath/images_path_bloc.dart';
 import 'package:verifily/outils/width_height.dart';
-import 'package:verifily/presentation/const.dart';
+import 'package:verifily/const.dart';
 import 'package:verifily/presentation/screens/back_id_card.dart';
 import 'package:verifily/presentation/screens/front_id_card.dart';
 
@@ -18,6 +20,13 @@ class VerificationFrontIdCard extends StatefulWidget {
 
 class _VerificationIdCardState extends State<VerificationFrontIdCard> {
   @override
+  void initState() {
+    print("back image size");
+    printImageSize(widget.cardIdPath);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final scal = screenWidth(context: context) / 360;
 
@@ -27,7 +36,7 @@ class _VerificationIdCardState extends State<VerificationFrontIdCard> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Text(
-              "Front Id card",
+              "You Front ID Card",
               style: titleTextStyle(scal, Colors.black),
             ),
             SizedBox(
@@ -56,12 +65,14 @@ class _VerificationIdCardState extends State<VerificationFrontIdCard> {
                     title: "Continue",
                     isContinue: true,
                     function: () {
-                      Navigator.pushReplacement(
+                      BlocProvider.of<ImagesPathBloc>(context).add(
+                          SaveFronIdCardPath(frontIdPath: widget.cardIdPath));
+                      Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
                                   const PickBackImageIdCard()));
-                    })
+                    }),
               ],
             )
           ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:verifily/outils/width_height.dart';
-import 'package:verifily/presentation/const.dart';
+import 'package:verifily/const.dart';
 
 class InkVerification extends StatefulWidget {
   final double widht;
@@ -26,15 +26,16 @@ class _InkVerificationState extends State<InkVerification> {
       onTap: widget.function,
       child: Container(
         decoration: BoxDecoration(
-            color:
-                widget.isContinue ? Colors.blue.shade500 : Colors.grey.shade300,
+            color: widget.isContinue
+                ? const Color.fromRGBO(21, 115, 254, 1)
+                : Colors.grey.shade300,
             borderRadius: BorderRadius.circular(12)),
         width: widget.widht,
         height: 40,
         child: Center(
             child: Text(
           widget.title,
-          style: buttonsTextStyle(scal, Colors.black),
+          style: buttonsTextStyle(scal, Colors.white),
         )),
       ),
     );
