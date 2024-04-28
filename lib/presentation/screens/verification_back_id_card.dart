@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:verifily/blocs/auth/auth_bloc_bloc.dart';
-import 'package:verifily/blocs/bloc/images_path_bloc.dart';
+import 'package:verifily/blocs/imagespath/images_path_bloc.dart';
 import 'package:verifily/outils/width_height.dart';
 import 'package:verifily/const.dart';
 import 'package:verifily/presentation/screens/back_id_card.dart';
@@ -39,49 +39,58 @@ class _VerificationIdCardState extends State<VerificationBackIdCard> {
           if (state is SendCardIdLoading) {
             return const Center(child: LoadingWidget());
           } else {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  "Back Id card",
-                  style: titleTextStyle(scal, Colors.black),
-                ),
-                SizedBox(
-                  height: screenHeight(context: context) / 2,
-                  width: screenWidth(context: context) - 20,
-                  child: Image.file(
-                    File(widget.backcardIdPath),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                Row(
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    InkVerification(
-                        widht: screenHeight(context: context) / 5,
-                        function: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const PickBackImageIdCard()));
-                        },
-                        isContinue: false,
-                        title: "Try Again"),
-                    InkVerification(
-                      widht: screenHeight(context: context) / 5,
-                      title: "Continue",
-                      isContinue: true,
-                      function: () {
-                        context.read<ImagesPathBloc>().add(
-                            SaveBackIdCard(backIdPath: widget.backcardIdPath));
-                        BlocProvider.of<AuthBlocBloc>(context)
-                            .add(SendFrontAndBackIdCardsEvent());
-                      },
+                    Text(
+                      "Your back ID Card",
+                      style: titleTextStyle(scal, Colors.black),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 2,
+                      child: Image.file(
+                        File(widget.backcardIdPath),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    FittedBox(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          InkVerification(
+                              widht: screenHeight(context: context) / 5,
+                              function: () {
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const PickBackImageIdCard()));
+                              },
+                              isContinue: false,
+                              title: "TRY AGAIN"),
+                          SizedBox(
+                            width: screenWidth(context: context) * 0.1,
+                          ),
+                          InkVerification(
+                            widht: screenHeight(context: context) / 5,
+                            title: "CONTINUE",
+                            isContinue: true,
+                            function: () {
+                              context.read<ImagesPathBloc>().add(SaveBackIdCard(
+                                  backIdPath: widget.backcardIdPath));
+                              BlocProvider.of<AuthBlocBloc>(context)
+                                  .add(SendFrontAndBackIdCardsEvent());
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
-              ],
+              ),
             );
           }
         },

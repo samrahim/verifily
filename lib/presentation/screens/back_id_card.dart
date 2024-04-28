@@ -19,6 +19,7 @@ class _PickBackImageIdCardState extends State<PickBackImageIdCard> {
   void initState() {
     super.initState();
     _controller = CameraController(
+        enableAudio: true,
         CameraDescription(
             name: cameraName,
             lensDirection: CameraLensDirection.back,
@@ -43,40 +44,87 @@ class _PickBackImageIdCardState extends State<PickBackImageIdCard> {
     if (!_controller.value.isInitialized) {
       return Container();
     }
+    double screenWidth = MediaQuery.of(context).size.width;
+    double containerWidth = screenWidth / 16;
+    double middleContainerWidth = screenWidth - 2 * containerWidth;
     return SafeArea(
       child: Scaffold(
         body: Stack(
+          alignment: Alignment.center,
           children: [
             SizedBox(
-                height: MediaQuery.of(context).size.height,
-                child: CameraPreview(_controller)),
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              child: CameraPreview(
+                _controller,
+                child: Column(
+                  children: [
+                    Container(
+                        height: MediaQuery.of(context).size.height / 3,
+                        width: MediaQuery.of(context).size.width,
+                        child: Container(color: Colors.black45)),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 3.5,
+                      child: Row(
+                        children: [
+                          Container(
+                            width: containerWidth,
+                            color: Colors.black45,
+                          ),
+                          Container(
+                            width: middleContainerWidth,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6),
+                              border: Border.all(
+                                color: Colors.grey.shade200,
+                                width: 4,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: containerWidth,
+                            color: Colors.black45,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          child: Container(color: Colors.black45)),
+                    ),
+                  ],
+                ),
+              ),
+            ),
             Align(
-              alignment: Alignment.center,
+              alignment: Alignment.topCenter,
               child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  const Text(
-                    'Back ID Card',
-                    style: TextStyle(
-                        fontSize: 28.0,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500),
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  SizedBox(height: MediaQuery.of(context).size.height / 10),
+                  FittedBox(
+                    child: const Text(
+                      'Back ID Card',
+                      style: TextStyle(
+                          fontSize: 28.0,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500),
+                    ),
                   ),
-                  const Text(
-                    'Please point the camera at the ID card',
-                    style: TextStyle(
-                        fontSize: 14.0,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w300),
+                  FittedBox(
+                    child: const Text(
+                      'Please point the camera at the ID card',
+                      style: TextStyle(
+                          fontSize: 14.0,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w300),
+                    ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height / 8),
                   Container(
-                    margin: const EdgeInsets.symmetric(vertical: 10.0),
                     width: MediaQuery.of(context).size.width - 16,
                     height: MediaQuery.of(context).size.height / 3,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white, width: 1.5),
-                    ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height / 8),
                   Row(
@@ -147,7 +195,7 @@ class _PickBackImageIdCardState extends State<PickBackImageIdCard> {
                             });
                           },
                           child: const Icon(
-                            Icons.flip_camera_ios_rounded,
+                            Icons.file_upload_outlined,
                             color: Color.fromRGBO(21, 115, 254, 1),
                             size: 40,
                           )),

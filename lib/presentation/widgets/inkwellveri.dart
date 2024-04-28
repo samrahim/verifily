@@ -35,7 +35,9 @@ class _InkVerificationState extends State<InkVerification> {
         child: Center(
             child: Text(
           widget.title,
-          style: buttonsTextStyle(scal, Colors.white),
+          style: widget.isContinue
+              ? buttonsTextStyle(scal, Colors.white)
+              : buttonsTextStyle(scal, Colors.black),
         )),
       ),
     );

@@ -32,50 +32,61 @@ class _VerificationIdCardState extends State<VerificationFrontIdCard> {
 
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Text(
-              "You Front ID Card",
-              style: titleTextStyle(scal, Colors.black),
-            ),
-            SizedBox(
-                height: screenHeight(context: context) / 2,
-                width: screenWidth(context: context) - 20,
-                child: Image.file(
-                  File(widget.cardIdPath),
-                  fit: BoxFit.cover,
-                )),
-            Row(
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                InkVerification(
-                    widht: screenHeight(context: context) / 5,
-                    function: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const PickFrontIdCardImage()));
-                    },
-                    isContinue: false,
-                    title: "Try Again"),
-                InkVerification(
-                    widht: screenHeight(context: context) / 5,
-                    title: "Continue",
-                    isContinue: true,
-                    function: () {
-                      BlocProvider.of<ImagesPathBloc>(context).add(
-                          SaveFronIdCardPath(frontIdPath: widget.cardIdPath));
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const PickBackImageIdCard()));
-                    }),
+                Text(
+                  "Your front ID Card",
+                  style: titleTextStyle(scal, Colors.black),
+                ),
+                SizedBox(
+                    height: screenHeight(context: context) / 2,
+                    width: screenWidth(context: context) - 20,
+                    child: Image.file(
+                      File(widget.cardIdPath),
+                      fit: BoxFit.cover,
+                    )),
+                FittedBox(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      InkVerification(
+                          widht: screenHeight(context: context) / 5,
+                          function: () {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const PickFrontIdCardImage()));
+                          },
+                          isContinue: false,
+                          title: "TRY AGAIN"),
+                      SizedBox(
+                        width: screenWidth(context: context) * 0.1,
+                      ),
+                      InkVerification(
+                          widht: screenHeight(context: context) / 5,
+                          title: "CONTINUE",
+                          isContinue: true,
+                          function: () {
+                            BlocProvider.of<ImagesPathBloc>(context).add(
+                                SaveFronIdCardPath(
+                                    frontIdPath: widget.cardIdPath));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const PickBackImageIdCard()));
+                          }),
+                    ],
+                  ),
+                )
               ],
-            )
-          ],
+            ),
+          ),
         ),
       ),
     );

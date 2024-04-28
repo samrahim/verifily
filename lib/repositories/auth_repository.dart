@@ -24,7 +24,7 @@ class AuthRepository {
     return response;
   }
 
-  Future<int> sendFrontAndBackId(
+  Future<StreamedResponse> sendFrontAndBackId(
       {required String customerId,
       required String frontId,
       required String backId}) async {
@@ -44,10 +44,10 @@ class AuthRepository {
 
     final response = await request.send();
 
-    return response.statusCode;
+    return response;
   }
 
-  Future<int> sendSelfiImageRequest(
+  Future<StreamedResponse> sendSelfiImageRequest(
       {required String customerId, required String faceImagePath}) async {
     var url = Uri.parse('$baseUrl/onboarding/$customerId/face_match');
 
@@ -63,7 +63,7 @@ class AuthRepository {
       faceImagePath,
     ));
     var response = await request.send();
-    return response.statusCode;
+    return response;
   }
 
   sendInspectionRequest({required String customerId}) async {

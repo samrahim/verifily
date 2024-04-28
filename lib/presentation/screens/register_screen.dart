@@ -91,7 +91,40 @@ class RegisterScreenState extends State<RegisterScreen> {
                     }
                   },
                   child: const SizedBox(),
-                )
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height / 3),
+                FittedBox(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "Powered by ",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w500),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: const Color.fromARGB(255, 237, 207, 242)),
+                        child: const Text(
+                          "Verifili",
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 50,
+                        height: 50,
+                        child: ClipRect(
+                          child: Image.asset(
+                              "images/88f44814-6194-4ddc-a1c6-a597ed472ca1.jpg"),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

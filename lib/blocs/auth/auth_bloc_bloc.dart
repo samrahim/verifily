@@ -35,16 +35,22 @@ class AuthBlocBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
     on<SendFrontAndBackIdCardsEvent>((event, emit) async {
       emit(SendCardIdLoading());
       try {
+        print("back images paths ${paths.backIdPath}");
+        print("fron images paths ${paths.frontIdPath}");
+
         await repository
             .sendFrontAndBackId(
                 customerId: repository.currentCustomerId,
                 frontId: paths.frontIdPath!,
                 backId: paths.backIdPath!)
-            .then((val) {
-          if (val == 200) {
+            .then((val) async {
+          val.stream.bytesToString().then((value) {
+            print(value);
+          });
+          if (val.statusCode == 200) {
             emit(SendCardIdSuccess());
           } else {
-            emit(SendCardIdFailed(error: "val"));
+            emit(SendCardIdFailed(error: await val.stream.bytesToString()));
           }
         });
       } catch (e) {
@@ -58,13 +64,15 @@ class AuthBlocBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
             .sendSelfiImageRequest(
                 customerId: repository.currentCustomerId,
                 faceImagePath: event.selfiImage)
-            .then((value) async {
-          if (value == 200) {
-            emit(SendCardIdSuccess());
+            .then((valuee) async {
+          print("response of send image $valuee");
+          if (valuee.statusCode == 200) {
             await repository.sendInspectionRequest(
                 customerId: repository.currentCustomerId);
+            emit(OperationCompleted());
           } else {
-            emit(SendSelfieImageFailed(err: "Invalid Front Image file format"));
+            emit(SendSelfieImageFailed(
+                err: await valuee.stream.bytesToString()));
           }
         });
       } catch (e) {

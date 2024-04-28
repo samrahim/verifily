@@ -2,7 +2,6 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:verifily/outils/width_height.dart';
 import 'package:verifily/const.dart';
-import 'package:verifily/presentation/screens/verification_front_id_card.dart';
 import 'package:verifily/presentation/screens/verification_passport.dart';
 
 class PickPasseportImage extends StatefulWidget {
@@ -84,22 +83,17 @@ class _PickPasseportImageState extends State<PickPasseportImage> {
                   SizedBox(height: screenHeight(context: context) / 1.5),
                   ElevatedButton(
                     onPressed: () async {
-                      try {
-                        await initController;
-
-                        await cameraController.takePicture().then((value) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => VerificationPasseportImage(
-                                cardIdPath: value.path,
-                              ),
+                      await initController;
+                      await cameraController.takePicture().then((value) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => VerificationPasseportImage(
+                              cardIdPath: value.path,
                             ),
-                          );
-                        });
-                      } catch (e) {
-                        print("Err $e");
-                      }
+                          ),
+                        );
+                      });
                     },
                     child: const Text('Capture Image'),
                   ),

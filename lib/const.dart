@@ -12,7 +12,7 @@ TextStyle titleTextStyle(double scal, Color color) {
 
 TextStyle bigTextStyle(double scal, Color color) {
   return TextStyle(
-    fontSize: 32 * scal,
+    fontSize: 30 * scal,
     fontWeight: FontWeight.w500,
     color: color,
   );
@@ -28,7 +28,7 @@ TextStyle subtitleTextStyle(double scal, Color color) {
 
 TextStyle buttonsTextStyle(double scal, Color color) {
   return TextStyle(
-    fontSize: 10 * scal,
+    fontSize: 8 * scal,
     fontWeight: FontWeight.w500,
     color: color,
   );

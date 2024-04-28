@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:verifily/blocs/auth/auth_bloc_bloc.dart';
 import 'package:verifily/blocs/imagespath/images_path_bloc.dart';
-import 'package:verifily/presentation/screens/register_screen.dart';
+import 'package:verifily/presentation/screens/pick_selfie_image.dart';
 import 'package:verifily/repositories/auth_repository.dart';
 import 'package:verifily/repositories/images_paths.dart';
 
@@ -41,9 +41,9 @@ class _MyAppState extends State<MyApp> {
               ),
             ),
           ],
-          child: const MaterialApp(
+          child: MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: RegisterScreen(),
+            home: PickSelfieImage(),
           ),
         ),
       ),
