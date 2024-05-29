@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:verifily/presentation/screens/verification_front_id_card.dart';
+import 'package:verifily/presentation/widgets/costume_column.dart';
 
 class PickFrontIdCardImage extends StatefulWidget {
   const PickFrontIdCardImage({
@@ -61,49 +62,10 @@ class _PickFrontIdCardImageState extends State<PickFrontIdCardImage> {
             SizedBox(
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
-              child: CameraPreview(
-                _controller,
-                child: Column(
-                  children: [
-                    Container(
-                        height: MediaQuery.of(context).size.height / 3,
-                        width: MediaQuery.of(context).size.width,
-                        child:
-                            Container(color: Colors.black.withOpacity(0.65))),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height / 3.5,
-                      child: Row(
-                        children: [
-                          Container(
-                            width: containerWidth,
-                            color: Colors.black.withOpacity(0.65),
-                          ),
-                          Container(
-                            width: middleContainerWidth,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              border: Border.all(
-                                color: Colors.grey.shade200,
-                                width: 4,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: containerWidth,
-                            color: Colors.black.withOpacity(0.65),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          child:
-                              Container(color: Colors.black.withOpacity(0.65))),
-                    ),
-                  ],
-                ),
-              ),
+              child: CameraPreview(_controller,
+                  child: CustomColumn(
+                      containerWidth: containerWidth,
+                      middleContainerWidth: middleContainerWidth)),
             ),
             Align(
               alignment: Alignment.topCenter,
@@ -159,7 +121,6 @@ class _PickFrontIdCardImageState extends State<PickFrontIdCardImage> {
                               decoration: BoxDecoration(
                                   border:
                                       Border.all(color: Colors.white, width: 4),
-                                  color: Colors.transparent,
                                   borderRadius: BorderRadius.circular(70)),
                             ),
                             Container(
@@ -202,7 +163,7 @@ class _PickFrontIdCardImageState extends State<PickFrontIdCardImage> {
                             });
                           },
                           child: const Icon(
-                            Icons.file_upload_outlined,
+                            Icons.flip_camera_ios_sharp,
                             color: Color.fromRGBO(21, 115, 254, 1),
                             size: 40,
                           )),

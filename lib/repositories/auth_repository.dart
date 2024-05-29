@@ -6,20 +6,21 @@ import 'package:verifily/const.dart';
 
 class AuthRepository {
   String currentCustomerId = '';
-  Future<Response> registerCostumer({required String fullname}) async {
-    print("func start work");
-    final body = {"full_name": fullname};
+  Future<Response> registerCostumer(
+      {required String fullname, required String email}) async {
+    final body = {"full_name": fullname, "email": email};
     final response = await http.post(
       Uri.parse(
         "$baseUrl/customers/create",
       ),
-      body: json.encode(body),
+      body: jsonEncode(body),
       headers: {
         "Authorization": "Bearer $token",
         'Content-Type': 'application/json'
       },
-      encoding: Encoding.getByName("utf-8"),
+      // encoding: Encoding.getByName("utf-8"),
     );
+    print(response.body);
 
     return response;
   }
@@ -66,15 +67,16 @@ class AuthRepository {
     return response;
   }
 
-  sendInspectionRequest({required String customerId}) async {
-    final String url = '$baseUrl/onboarding/$customerId/ispection';
+  Future<Response> sendInspectionRequest({required String customerId}) async {
+    final String url = '$baseUrl/onboarding/$customerId/inspection';
 
-    await http.post(
+    final response = await http.post(
       Uri.parse(url),
       headers: {
         'accept': 'application/json',
         'Authorization': 'Bearer $token',
       },
     );
+    return response;
   }
 }

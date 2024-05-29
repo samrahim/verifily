@@ -17,7 +17,7 @@ class AuthBlocBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
       emit(RegisterCustomerLoading());
       try {
         await repository
-            .registerCostumer(fullname: event.fullName)
+            .registerCostumer(fullname: event.fullName, email: event.email)
             .then((value) {
           if (value.statusCode == 200) {
             Map<String, dynamic> data = json.decode(value.body);
@@ -35,18 +35,12 @@ class AuthBlocBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
     on<SendFrontAndBackIdCardsEvent>((event, emit) async {
       emit(SendCardIdLoading());
       try {
-        print("back images paths ${paths.backIdPath}");
-        print("fron images paths ${paths.frontIdPath}");
-
         await repository
             .sendFrontAndBackId(
                 customerId: repository.currentCustomerId,
                 frontId: paths.frontIdPath!,
                 backId: paths.backIdPath!)
             .then((val) async {
-          val.stream.bytesToString().then((value) {
-            print(value);
-          });
           if (val.statusCode == 200) {
             emit(SendCardIdSuccess());
           } else {
@@ -65,11 +59,16 @@ class AuthBlocBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
                 customerId: repository.currentCustomerId,
                 faceImagePath: event.selfiImage)
             .then((valuee) async {
-          print("response of send image $valuee");
           if (valuee.statusCode == 200) {
-            await repository.sendInspectionRequest(
-                customerId: repository.currentCustomerId);
-            emit(OperationCompleted());
+            await repository
+                .sendInspectionRequest(customerId: repository.currentCustomerId)
+                .then((res) {
+              if (res.statusCode == 200) {
+                emit(OperationCompleted());
+              } else {
+                emit(SendSelfieImageFailed(err: json.decode(res.body)));
+              }
+            });
           } else {
             emit(SendSelfieImageFailed(
                 err: await valuee.stream.bytesToString()));

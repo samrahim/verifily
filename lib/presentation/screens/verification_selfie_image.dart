@@ -41,7 +41,7 @@ class _VerificationIdCardState extends State<VerificationSelfieImage> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Text(
-                          "Your Selfie",
+                          "Your selfie",
                           style: titleTextStyle(scal, Colors.black),
                         ),
                         SizedBox(
@@ -62,11 +62,11 @@ class _VerificationIdCardState extends State<VerificationSelfieImage> {
                                 InkVerification(
                                     widht: screenHeight(context: context) / 5,
                                     function: () {
-                                      // Navigator.pushReplacement(
-                                      //     context,
-                                      //     MaterialPageRoute(
-                                      //         builder: (context) =>
-                                      //             const PickSelfieImage()));
+                                      Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const PickSelfieImage()));
                                     },
                                     isContinue: false,
                                     title: "TRY AGAIN"),

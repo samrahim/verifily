@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:verifily/outils/width_height.dart';
-import 'package:verifily/const.dart';
 import 'package:verifily/presentation/screens/front_id_card.dart';
-import 'package:verifily/presentation/screens/passeport_img.dart';
 
 class SelectDocumentTypeScreen extends StatefulWidget {
   const SelectDocumentTypeScreen({super.key});
@@ -45,7 +43,6 @@ class _SelectDocumentTypeScreenState extends State<SelectDocumentTypeScreen> {
                     },
                     child: SizedBox(
                       height: screenHeight(context: context) / 10,
-                      // width: screenWidth(context: context) - 16,
                       child: Card(
                         color: const Color.fromRGBO(21, 115, 254, 1),
                         elevation: 12,
@@ -74,11 +71,11 @@ class _SelectDocumentTypeScreenState extends State<SelectDocumentTypeScreen> {
                   SizedBox(height: screenHeight(context: context) / 20),
                   InkWell(
                     onTap: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const PickPasseportImage()));
+                      // Navigator.pushReplacement(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) =>
+                      //             const PickPasseportImage()));
                     },
                     child: SizedBox(
                       height: screenHeight(context: context) / 10,
@@ -117,7 +114,7 @@ class _SelectDocumentTypeScreenState extends State<SelectDocumentTypeScreen> {
                     const Text(
                       "Powered by ",
                       style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                     ),
                     Container(
                       decoration: BoxDecoration(
@@ -126,11 +123,11 @@ class _SelectDocumentTypeScreenState extends State<SelectDocumentTypeScreen> {
                       child: const Text(
                         "Verifili",
                         style: TextStyle(
-                          fontSize: 24,
+                          fontSize: 20,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               )

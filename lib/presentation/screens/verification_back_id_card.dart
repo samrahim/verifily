@@ -22,13 +22,6 @@ class VerificationBackIdCard extends StatefulWidget {
 
 class _VerificationIdCardState extends State<VerificationBackIdCard> {
   @override
-  void initState() {
-    print("back image size");
-    printImageSize(widget.backcardIdPath);
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final scal = screenWidth(context: context) / 360;
 
@@ -50,12 +43,12 @@ class _VerificationIdCardState extends State<VerificationBackIdCard> {
                       style: titleTextStyle(scal, Colors.black),
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height / 2,
-                      child: Image.file(
-                        File(widget.backcardIdPath),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                        height: screenHeight(context: context) / 2,
+                        width: screenWidth(context: context) - 20,
+                        child: Image.file(
+                          File(widget.backcardIdPath),
+                          fit: BoxFit.cover,
+                        )),
                     FittedBox(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

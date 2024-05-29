@@ -25,22 +25,20 @@ class _FinalScreenState extends State<FinalScreen> {
               width: screenWidth(context: context),
             ),
             Container(
-              height: screenHeight(context: context) / 2.5,
+              height: screenHeight(context: context) / 3,
               decoration: BoxDecoration(
-                  color: Colors.green.shade200,
-                  borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(150),
-                      bottomRight: Radius.circular(150))),
+                  color: Colors.green.shade100,
+                  borderRadius: BorderRadius.vertical(
+                    bottom: Radius.elliptical(200, 70),
+                  )),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding:
+                  EdgeInsets.only(top: MediaQuery.of(context).size.height / 6),
               child: Column(
                 children: [
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height / 4.5,
-                  ),
                   Container(
-                      padding: const EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(8),
                       height: MediaQuery.of(context).size.height / 6,
                       width: MediaQuery.of(context).size.width / 3,
                       decoration: BoxDecoration(
@@ -48,11 +46,12 @@ class _FinalScreenState extends State<FinalScreen> {
                           borderRadius: BorderRadius.circular(60)),
                       child: Image.asset(
                         'images/—Pngtree—green check mark in circle_9024765.png',
-                        height: MediaQuery.of(context).size.height / 5,
+                        height: MediaQuery.of(context).size.height / 3,
+                        fit: BoxFit.cover,
                       )),
                   const SizedBox(height: 10),
                   Text(
-                    "Excellent Job",
+                    "Excellent job !!",
                     style: titleTextStyle(
                         screenWidth(context: context) / 360, Colors.black),
                   ),
@@ -67,26 +66,29 @@ class _FinalScreenState extends State<FinalScreen> {
                     style: titleTextStyle(
                         screenWidth(context: context) / 360, Colors.black),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 30),
                   const Text(
                     "It may take up to ",
-                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.w500),
+                    style: TextStyle(fontSize: 36, fontWeight: FontWeight.w500),
                   ),
                   const Text(
                     "24 hours...",
-                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.w500),
+                    style: TextStyle(fontSize: 36, fontWeight: FontWeight.w500),
                   ),
-                  const SizedBox(height: 32),
-                  InkVerification(
-                    function: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const RegisterScreen()));
-                    },
-                    isContinue: true,
-                    title: "BACK TO HOME",
-                    widht: screenWidth(context: context),
+                  SizedBox(height: MediaQuery.of(context).size.height / 10),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: InkVerification(
+                      function: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const RegisterScreen()));
+                      },
+                      isContinue: true,
+                      title: "BACK TO HOME",
+                      widht: screenWidth(context: context),
+                    ),
                   )
                 ],
               ),

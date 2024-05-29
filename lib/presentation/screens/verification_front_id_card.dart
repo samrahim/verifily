@@ -20,13 +20,6 @@ class VerificationFrontIdCard extends StatefulWidget {
 
 class _VerificationIdCardState extends State<VerificationFrontIdCard> {
   @override
-  void initState() {
-    print("back image size");
-    printImageSize(widget.cardIdPath);
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final scal = screenWidth(context: context) / 360;
 

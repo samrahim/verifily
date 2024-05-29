@@ -4,7 +4,8 @@ abstract class AuthBlocEvent extends Equatable {}
 
 class RegisterWithFullNameEvent extends AuthBlocEvent {
   final String fullName;
-  RegisterWithFullNameEvent({required this.fullName});
+  final String email;
+  RegisterWithFullNameEvent({required this.email, required this.fullName});
   @override
   List<Object?> get props => [fullName];
 }

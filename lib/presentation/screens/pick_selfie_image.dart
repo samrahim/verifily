@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
 import 'package:verifily/presentation/screens/verification_selfie_image.dart';
+import 'package:verifily/presentation/widgets/paint_widget.dart';
 
 class PickSelfieImage extends StatefulWidget {
   const PickSelfieImage({
@@ -51,28 +52,17 @@ class _PickSelfieImageState extends State<PickSelfieImage> {
           alignment: Alignment.center,
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: CameraPreview(
-                _controller,
-              ),
+                height: MediaQuery.of(context).size.height,
+                child: CameraPreview(_controller)),
+            LayoutBuilder(
+              builder: (context, constraints) {
+                return CustomPaint(
+                    size: Size(constraints.maxWidth, constraints.maxHeight),
+                    painter: OverlayPainter(
+                        screenHeight: MediaQuery.of(context).size.height,
+                        screenWidth: MediaQuery.of(context).size.width));
+              },
             ),
-            Positioned.fill(
-                child: DecoratedBox(
-              decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                gradient: RadialGradient(
-                  center: Alignment.center,
-                  radius: 0.5,
-                  colors: <Color>[
-                    Colors.transparent,
-                    Colors.white,
-                    Colors.black.withOpacity(0.65),
-                  ],
-                  stops: <double>[01, 1.0, 0.7],
-                ),
-              ),
-            )),
             Align(
               alignment: Alignment.topCenter,
               child: Container(
@@ -178,7 +168,7 @@ class _PickSelfieImageState extends State<PickSelfieImage> {
                               });
                             },
                             child: const Icon(
-                              Icons.file_upload_outlined,
+                              Icons.flip_camera_ios_sharp,
                               color: Color.fromRGBO(21, 115, 254, 1),
                               size: 40,
                             )),
