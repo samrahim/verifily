@@ -35,4 +35,4 @@ TextStyle buttonsTextStyle(double scal, Color color) {
 const String baseUrl = 'https://api.verifili.pro/v1';
 
 const String token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiOWI1MWZkNzItYzQwNy00ODFlLWFkZmQtZDQ2MDU0ZjMzYjE0Iiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE3NDg1NTY5NjR9.nb15ABDWHqXsm0ANqIC5cbU9U9p14RAusq_iup75fGE';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMzEyMzZjNWUtMzkxYy00YjUwLWE5NzYtMmQ4NDJkYmQ2ODZlIiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE3NzE4NzY4Njl9.Ya-h94fhy6SGbfVqUwpeWStDoXJ5RjdkaRjkTZg9a0Y';

@@ -19,6 +19,7 @@ class AuthBlocBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
         await repository
             .registerCostumer(fullname: event.fullName, email: event.email)
             .then((value) {
+          print(value);
           if (value.statusCode == 200) {
             Map<String, dynamic> data = json.decode(value.body);
             repository.currentCustomerId = data['Customer ID'];
