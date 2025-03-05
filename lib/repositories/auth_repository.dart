@@ -11,7 +11,7 @@ class AuthRepository {
     final body = {"full_name": fullname, "email": email};
     final response = await http.post(
       Uri.parse(
-        "$baseUrl/onboarding/customers/create",
+        "$baseUrl/onboarding/create",
       ),
       body: jsonEncode(body),
       headers: {
